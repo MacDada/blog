@@ -1,6 +1,6 @@
 <?php
 class blogController {
-
+//komentarz kontrolera
     private $model;
     private $view;
     private $baza;
