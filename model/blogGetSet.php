@@ -1,5 +1,4 @@
 <?php
-
 class blogGetSet {
 	
 	private $post_id, $post_date, $post_title, $post_text;

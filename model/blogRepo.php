@@ -1,5 +1,4 @@
 <?php
-
 class blogRepo {
 	private $posts = [];
 	public function __construct() {
