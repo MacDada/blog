@@ -1,5 +1,4 @@
 <?php
-//blogController.php
 class blogController {
     private $bGetSet;
     private $bView;
@@ -14,6 +13,11 @@ class blogController {
     //wywolanie funkcji modelFinAll w pliku blogModel.php i return do indexu
     public function postsList() {
         $posts = $this->bModel->findAll();
-        return $posts;
+        $this->bView->renderAll($posts);
+    }
+    
+    public function postOne($id) {
+        $post = $this->bModel->findOne($id);
+        $this->bView->renderOne($post);
     }
 }

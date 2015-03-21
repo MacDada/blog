@@ -10,4 +10,9 @@ require_once('model/blogModel.php');
 require_once('view/blogView.php');
 
 $blogController = new blogController(new blogGetSet, new blogView, new blogModel);
-$blogController->postsList();
+if(!isset($_GET['id'])){
+    $blogController->postsList();
+} else {
+    $blogController->postOne($_GET['id']);
+}
+
