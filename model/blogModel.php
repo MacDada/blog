@@ -5,6 +5,7 @@ class blogModel {
     public $resultOne;
     public $queryOne;
     
+    //nawiazanie polaczenia z baza danych
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
     }    
@@ -15,9 +16,10 @@ class blogModel {
         return $this->resultsAll;
     }
     
+    //zwrocenie jednego postu do kontrolera
     public function findOne($id) {
         $queryOne = $this->db->query('SELECT * FROM posts WHERE post_id="'.$id.'"');
-        $this->resultOne = $queryOne->fetch();
+        $this->resultOne = $queryOne->fetch(PDO::FETCH_ASSOC);
         return $this->resultOne;
     }
 }

@@ -1,11 +1,9 @@
 <?php
 class blogController {
-    private $bGetSet;
     private $bView;
     private $bModel;
     
-    public function __construct(blogGetSet $blogGetSetConstruct, blogView $blogViewConstruct, blogModel $blogModelConstruct) {
-        $this->bGetSet = $blogGetSetConstruct;
+    public function __construct(blogView $blogViewConstruct, blogModel $blogModelConstruct) {
         $this->bView = $blogViewConstruct;
         $this->bModel = $blogModelConstruct;
     }
@@ -19,5 +17,9 @@ class blogController {
     public function postOne($id) {
         $post = $this->bModel->findOne($id);
         $this->bView->renderOne($post);
+    }
+    
+    public function url() {
+        $this->bView->urlInfo();
     }
 }
