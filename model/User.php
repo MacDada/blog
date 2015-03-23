@@ -16,7 +16,7 @@ class User {
         $this->id;
     }
     
-    public function getLogin($username) {
+    public function getUsername($username) {
         $this->username;
     }
     
