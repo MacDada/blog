@@ -13,18 +13,18 @@ class User {
     }
     
     public function getID($id) {
-        $this->id;
+        return $this->id;
     }
     
     public function getUsername($username) {
-        $this->username;
+        return $this->username;
     }
     
     public function getPassword($password) {
-        $this->password;
+        return $this->password;
     }
     
     public function getEmail($email) {
-        $this->email;
+        return $this->email;
     }
 }
