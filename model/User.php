@@ -12,19 +12,19 @@ class User {
         $this->email = $email;
     }
     
-    public function getID($id) {
+    public function getID() {
         return $this->id;
     }
     
-    public function getUsername($username) {
+    public function getUsername() {
         return $this->username;
     }
     
-    public function getPassword($password) {
+    public function getPassword() {
         return $this->password;
     }
     
-    public function getEmail($email) {
+    public function getEmail() {
         return $this->email;
     }
 }
