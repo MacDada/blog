@@ -7,7 +7,7 @@ class PdoUserRepository {
     }
 
     private function createUser(array $userData) {
-        $User = new User($userData['user_id'], $userData['user_name'], $userData['user_password'], $userData['user_email']);
+        $User = new User($userData['user_id'], $userData['username'], $userData['user_password'], $userData['user_email']);
         return $User;
     }
     
@@ -37,7 +37,7 @@ class PdoUserRepository {
     }
     
     public function findByUsername($username) {
-        $query = $this->db->query('SELECT * FROM users WHERE user_name="'.$login.'"');
+        $query = $this->db->query('SELECT * FROM users WHERE username="'.$login.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
