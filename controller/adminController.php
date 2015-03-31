@@ -8,9 +8,6 @@ class AdminController {
         $this->pdoUser = $userRepository;
     }
     
-    public function menuList() {
-        $this->menuList();
-    }
     public function usersList()
     {
         $users = $this->userRepository->findAll();
