@@ -1,5 +1,5 @@
 <?php
-class blogView {
+class BlogView {
     
     public function renderAll($posts) {
         foreach($posts as $row) {

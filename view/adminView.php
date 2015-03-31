@@ -1,21 +1,15 @@
 <?php
-class adminView {
+class AdminView {
 
-    public function viewForm() {
-         echo '
-            <form method="POST" method="index.php">
-            Login: <input type="text" name="login">
-            Hasło: <input type="password" name="password">
-            <input type="submit" name="zaloguj">
-            </form>
-            ';
+    public function menuList() {
+        echo '<a href="index.php?action=lista">Lista userów</a><br>'
+        . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
+        . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
+        . '<a href="index.php?action=edituser">Edytuj uzytkownika</a><hr>'
+              ;
     }
     
-    public function viewPanel() {
-        echo 'panel';
-    }
-    
-    public function viewInfo() {
-        echo 'bledne dane logowania';
+    public function usersList() {
+        echo 'długa lista asdflkas dflkas dflkasd lfsdf';
     }
 }

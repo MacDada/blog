@@ -1,5 +1,5 @@
 <?php
-class blogModel {
+class BlogModel {
     public $db;
     public $resultsAll;
     public $resultOne;

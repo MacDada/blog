@@ -1,12 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
+require_once __DIR__.'\controller\blogController.php';
+require_once __DIR__.'\model\blogModel.php';
+require_once __DIR__.'\view\BlogView.php';
 
-require_once('controller/blogController.php');
-require_once('model/blogModel.php');
-require_once('view/blogView.php');
-
-$blogController = new blogController(new blogView, new blogModel);
+$blogController = new BlogController(new BlogView, new BlogModel);
 if(!isset($_GET['id'])){
     $blogController->postsList();
 } elseif($_GET['id']==NULL) {

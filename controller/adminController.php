@@ -1,29 +1,22 @@
 <?php
-class adminController {
-    private $aModel;
-    private $aView;
+class AdminController {
+    private $model;
+    private $view;
+    private $pdoUser;
     
-    public function __construct(adminModel $aModelConstruct, adminView $aViewConstruct) {
-        $this->aModel = $aModelConstruct;
-        $this->aView = $aViewConstruct;
+    public function __construct(AdminModel $aModelConstruct, AdminView $aViewConstruct, PdoUserRepository $PdoUserRepositoryConstruct) {
+        $this->model = $aModelConstruct;
+        $this->view = $aViewConstruct;
+        $this->pdoUser = $PdoUserRepositoryConstruct;
     }
     
-    public function checkLogin() {
-        $isset = $this->aModel->checkLogin();
-        if($isset == FALSE) {
-            $this->aView->viewForm();
-        } else {
-            $this->aView->viewPanel();
-        }
+    public function menuList() {
+        $this->view->menuList();
     }
     
-    public function login($login, $password) {
-        $loginInfo = $this->aModel->login($login, $password);
-        if($loginInfo == TRUE) {
-            $this->aView->viewPanel();
-        } else {
-            $this->aView->viewInfo();
-        }
+    public function usersList() {
+        return $this->pdoUser->findAll();
     }
+
 }
 
