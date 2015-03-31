@@ -5,7 +5,7 @@ $adminController = new adminController(new AdminView(), new PdoUserRepository())
 
 switch ($_GET['action']) {
     case 'lista':
-        $users = $adminController->usersList();
+        echo $adminController->usersList($users);
         break;
     
     case 'user':

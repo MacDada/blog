@@ -1,7 +1,7 @@
 <?php
 class AdminView {
 
-    public function renderMenu() {
+    private function renderMenu() {
         return '<a href="index.php?action=lista">Lista userów</a><br>'
         . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
@@ -9,7 +9,7 @@ class AdminView {
               ;
     }
     
-    public function renderUsersList() {
+    public function renderUsersList(array $users) {
         if (0 === count($users)) {
                 echo 'Nie znaleziono użytkowników.';
         } else {

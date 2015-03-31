@@ -11,10 +11,9 @@ class AdminController {
     public function usersList()
     {
         $users = $this->userRepository->findAll();
-        var_dump($users);
-        //$pageContent = $this->view->renderUsersList($users);
+        $pageContent = $this->view->renderUsersList($users);
 
-        //return $this->view->renderTemplate($pageContent);
+        return $this->view->renderTemplate($pageContent);
     }
 
 }
