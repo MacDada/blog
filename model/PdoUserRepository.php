@@ -7,7 +7,7 @@ class PdoUserRepository {
     }
 
     private function createUser(array $userData) {
-        $User = new User($userData['user_id'], $userData['username'], $userData['user_password'], $userData['user_email']);
+        $User = new User($userData['id'], $userData['username'], $userData['password'], $userData['email']);
         return $User;
     }
     
@@ -27,7 +27,7 @@ class PdoUserRepository {
     }
     
     public function findByID($id) {
-        $query = $this->db->query('SELECT * FROM users WHERE user_id="'.$id.'"');
+        $query = $this->db->query('SELECT * FROM users WHERE id="'.$id.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
@@ -37,7 +37,7 @@ class PdoUserRepository {
     }
     
     public function findByUsername($username) {
-        $query = $this->db->query('SELECT * FROM users WHERE username="'.$login.'"');
+        $query = $this->db->query('SELECT * FROM users WHERE username="'.$username.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
@@ -47,7 +47,7 @@ class PdoUserRepository {
     }
     
     public function findByEmail($email) {
-        $query = $this->db->query('SELECT * FROM users WHERE user_email="'.$email.'"');
+        $query = $this->db->query('SELECT * FROM users WHERE email="'.$email.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();

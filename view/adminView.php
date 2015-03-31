@@ -14,6 +14,7 @@ class AdminView {
                 echo 'Nie znaleziono użytkowników.';
         } else {
                 echo 'Użytkownicy:<br />';
+                var_dump($users);
                 foreach ($users as $user) {
                         echo 'User: id='.$user->getId().' username='.$user->getUsername().'<br />';
             }
