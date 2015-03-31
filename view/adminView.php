@@ -10,14 +10,15 @@ class AdminView {
     }
     
     public function renderUsersList(array $users) {
+        $usersList = null;
         if (0 === count($users)) {
-                echo 'Nie znaleziono użytkowników.';
+                return 'Nie znaleziono użytkowników.';
         } else {
-                echo 'Użytkownicy:<br />';
-                var_dump($users);
-                foreach ($users as $user) {
-                        echo 'User: id='.$user->getId().' username='.$user->getUsername().'<br />';
+            echo 'Użytkownicy:<br />';
+            foreach ($users as $user) {
+                $usersList .= 'User: id='.$user->getId().' username='.$user->getUsername().'<br />';
             }
+            return $usersList;
         }
     }
     
