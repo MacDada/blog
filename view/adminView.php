@@ -1,8 +1,8 @@
 <?php
 class AdminView {
 
-    public function menuList() {
-        echo '<a href="index.php?action=lista">Lista userów</a><br>'
+    public function menu() {
+        return '<a href="index.php?action=lista">Lista userów</a><br>'
         . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
         . '<a href="index.php?action=edituser">Edytuj uzytkownika</a><hr>'
@@ -11,5 +11,23 @@ class AdminView {
     
     public function usersList() {
         echo 'długa lista asdflkas dflkas dflkasd lfsdf';
+    }
+    
+    public function renderTemplate($pageContent)
+    {
+        $menu = $this->renderMenu();
+
+        return '
+            <html>
+                <body>
+                    <header>
+                        '.$menu.'
+                    </header>
+                    <div id="pageContent">
+                        '.$pageContent.'
+                    </div>
+                </body>
+            </html>
+        ';
     }
 }

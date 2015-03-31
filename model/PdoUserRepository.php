@@ -1,12 +1,6 @@
 <?php
 class PdoUserRepository {
-    private $query;
-    private $result;
     private $db;//PDO
-    private $array;
-    public $user;
-    public $userdata;
-    public $usersdata;
 
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
@@ -17,7 +11,7 @@ class PdoUserRepository {
         return $User;
     }
     
-    public function createUsers(array $usersData) {
+    private function createUsers(array $usersData) {
         $users = [];
         foreach ($usersData as $user) {
             $users[] = $this->createUser($user);
@@ -29,7 +23,8 @@ class PdoUserRepository {
         $query = $this->db->query('SELECT * FROM users');
         $array = $this->result = $query->fetchAll(PDO::FETCH_ASSOC);
         $users = $this->createUsers($array);
-        return $users;
+        var_dump($array);
+        //return $users;
     }
     
     public function findByID($id) {

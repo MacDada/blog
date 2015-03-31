@@ -3,9 +3,9 @@ class BlogController {
     private $view;
     private $model;
     
-    public function __construct(BlogView $blogViewConstruct, BlogModel $blogModelConstruct) {
-        $this->view = $blogViewConstruct;
-        $this->model = $blogModelConstruct;
+    public function __construct(BlogView $blogView, BlogModel $blogModel) {
+        $this->view = $blogView;
+        $this->model = $blogModel;
     }
     
     //wywolanie funkcji modelFinAll w pliku blogModel.php i return do indexu

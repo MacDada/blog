@@ -1,21 +1,23 @@
 <?php
 class AdminController {
-    private $model;
     private $view;
-    private $pdoUser;
+    private $userRepository;
     
-    public function __construct(AdminModel $aModelConstruct, AdminView $aViewConstruct, PdoUserRepository $PdoUserRepositoryConstruct) {
-        $this->model = $aModelConstruct;
+    public function __construct(AdminView $aViewConstruct, PdoUserRepository $userRepository) {
         $this->view = $aViewConstruct;
-        $this->pdoUser = $PdoUserRepositoryConstruct;
+        $this->pdoUser = $userRepository;
     }
     
     public function menuList() {
-        $this->view->menuList();
+        $this->menuList();
     }
-    
-    public function usersList() {
-        return $this->pdoUser->findAll();
+    public function usersList()
+    {
+        $users = $this->userRepository->findAll();
+
+        $pageContent = $this->view->renderUsersList($users);
+
+        return $this->view->renderTemplate($pageContent);
     }
 
 }
