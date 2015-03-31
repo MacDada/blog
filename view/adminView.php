@@ -1,7 +1,7 @@
 <?php
 class AdminView {
 
-    public function menu() {
+    public function renderMenu() {
         return '<a href="index.php?action=lista">Lista userów</a><br>'
         . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
@@ -9,8 +9,15 @@ class AdminView {
               ;
     }
     
-    public function usersList() {
-        echo 'długa lista asdflkas dflkas dflkasd lfsdf';
+    public function renderUsersList() {
+        if (0 === count($users)) {
+                echo 'Nie znaleziono użytkowników.';
+        } else {
+                echo 'Użytkownicy:<br />';
+                foreach ($users as $user) {
+                        echo 'User: id='.$user->getId().' username='.$user->getUsername().'<br />';
+            }
+        }
     }
     
     public function renderTemplate($pageContent)

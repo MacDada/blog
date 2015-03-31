@@ -23,8 +23,7 @@ class PdoUserRepository {
         $query = $this->db->query('SELECT * FROM users');
         $array = $this->result = $query->fetchAll(PDO::FETCH_ASSOC);
         $users = $this->createUsers($array);
-        var_dump($array);
-        //return $users;
+        return $users;
     }
     
     public function findByID($id) {

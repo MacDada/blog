@@ -1,8 +1,5 @@
 <?php
 require_once __DIR__.'/boot.php';
-require_once __DIR__.'/controller\blogController.php';
-require_once __DIR__.'/model\blogModel.php';
-require_once __DIR__.'/view\BlogView.php';
 
 $blogController = new BlogController(new BlogView, new BlogModel);
 if(!isset($_GET['id'])){
