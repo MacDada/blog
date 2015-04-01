@@ -13,13 +13,22 @@ class AdminView {
         $usersList = null;
         if (0 === count($users)) {
                 return 'Nie znaleziono użytkowników.';
-        } else {
-            echo 'Użytkownicy:<br />';
-            foreach ($users as $user) {
-                $usersList .= 'User: id='.$user->getId().' username='.$user->getUsername().'<br />';
-            }
-            return $usersList;
         }
+        foreach ($users as $user) {
+            $usersList .= 'User: id='.$user->getID().' username='.$user->getUsername().'<br />';
+        }
+        return 'Użytkownicy: <br>'.$usersList;
+    }
+    
+    ///do zrobienia
+    public function renderUser(array $user) {
+        $singleUser = null;
+        if (0 === count($user)) {
+                return 'Nie znaleziono użytkownika.';
+        }
+        //var_dump($user);
+        //echo $singleUser = $user['Userid'].$user['Userusername'].$user['Userpassword'].$user['Useremail'];
+        
     }
     
     public function renderTemplate($pageContent)

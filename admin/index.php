@@ -9,7 +9,7 @@ switch ($_GET['action']) {
         break;
     
     case 'user':
-        //
+        echo $adminController->singleUser($_GET['username']);
         break;
     
     case 'adduser':

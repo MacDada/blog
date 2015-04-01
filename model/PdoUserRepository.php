@@ -32,17 +32,17 @@ class PdoUserRepository {
         if(NULL == $result) {
             throw new UserNotFoundException();
         } else {
-            $this->createUser($result);
+            return $this->createUser($result);
         }
     }
-    
+
     public function findByUsername($username) {
         $query = $this->db->query('SELECT * FROM users WHERE username="'.$username.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
         } else {
-            $this->createUser($result);
+            return $this->createUser($result);
         }
     }
     
@@ -52,7 +52,7 @@ class PdoUserRepository {
         if(NULL == $result) {
             throw new UserNotFoundException();
         } else {
-            $this->createUser($result);
+            return $this->createUser($result);
         }
     }
 }

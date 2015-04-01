@@ -15,6 +15,15 @@ class AdminController {
 
         return $this->view->renderTemplate($pageContent);
     }
+    
+    public function singleUser($getUsername) {
+        $objectUser = $this->userRepository->findByUsername($getUsername);
+        $user = (array) $objectUser;
+        var_dump($objectUser);
+        var_dump($user);
+        $pageContent = $this->view->renderUser($user);
+        return $this->view->renderTemplate($pageContent);
+    }
 
 }
 
