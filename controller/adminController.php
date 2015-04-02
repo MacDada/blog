@@ -17,11 +17,9 @@ class AdminController {
     }
     
     public function singleUser($getUsername) {
-        $objectUser = $this->userRepository->findByUsername($getUsername);
-        $user = (array) $objectUser;
-        var_dump($objectUser);
-        var_dump($user);
+        $user = $this->userRepository->findByUsername($getUsername);
         $pageContent = $this->view->renderUser($user);
+        
         return $this->view->renderTemplate($pageContent);
     }
 
