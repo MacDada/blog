@@ -18,7 +18,11 @@ class AdminController {
     
     public function singleUser($getUsername) {
         $user = $this->userRepository->findByUsername($getUsername);
-        $pageContent = $this->view->renderUser($user);
+        try {
+            $pageContent = $this->view->renderUser($user);
+        } catch (UserNotFoundException $ex) {
+            $pageContent = $this->view->renderUserNotFound();
+        }
         
         return $this->view->renderTemplate($pageContent);
     }

@@ -22,14 +22,10 @@ class AdminView {
     
     ///do zrobienia
     public function renderUser(User $user) {
-        try {
-            return $user = 'Użytkownik o ID: '.$user->getID().'<br>'.
+        return 'Użytkownik o ID: '.$user->getID().'<br>'.
                     'Nazwa użytkownika: '.$user->getUsername().'<br>'.
                     'E-mail: '.$user->getEmail().'<br>'.
                     'Hasło: '.$user->getPassword();
-        } catch (Exception $ex) {
-            return $this->renderUserNotFound();
-        }
     }
     
     public function renderUserNotFound() {

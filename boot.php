@@ -10,3 +10,4 @@ require_once __DIR__.'/controller/adminController.php';
 require_once __DIR__.'/view/adminView.php';
 require_once __DIR__.'/model/User.php';
 require_once __DIR__.'/model/PdoUserRepository.php';
+require_once __DIR__.'/model/UserNotFoundException.php';
