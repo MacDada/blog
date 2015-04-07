@@ -1,19 +1,19 @@
 <?php
 require_once __DIR__.'/../boot.php';
 
-$adminController = new adminController(new AdminView(), new PdoUserRepository());
+$userController = new UserController(new UserView(), new PdoUserRepository());
 
 switch ($_GET['action']) {
     case 'lista':
-        echo $adminController->usersList();
+        echo $userController->usersList();
         break;
     
     case 'user':
-        echo $adminController->singleUser($_GET['username']);
+        echo $userController->singleUser($_GET['username']);
         break;
     
     case 'adduser':
-        //
+        echo $userController->create();
         break;
     
     case 'edituser':

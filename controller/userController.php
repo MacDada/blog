@@ -1,9 +1,9 @@
 <?php
-class AdminController {
+class UserController {
     private $view;
     private $userRepository;
     
-    public function __construct(AdminView $view, PdoUserRepository $userRepository) {
+    public function __construct(UserView $view, PdoUserRepository $userRepository) {
         $this->view = $view;
         $this->userRepository = $userRepository;
     }
@@ -27,5 +27,8 @@ class AdminController {
         return $this->view->renderTemplate($pageContent);
     }
 
+    public function create() {
+        return $this->view->renderForm();
+    }
 }
 
