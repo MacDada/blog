@@ -7,7 +7,7 @@ class PdoUserRepository {
     }
 
     private function createUser(array $userData) {
-        $User = new User($userData['id'], $userData['username'], $userData['password'], $userData['email']);
+        $User = new User($userData['username'], $userData['password'], $userData['email'], $userData['id']);
         return $User;
     }
     
@@ -54,5 +54,12 @@ class PdoUserRepository {
         } else {
             return $this->createUser($result);
         }
+    }
+    
+    public function save(User $user) {
+        $query = $this->db->exec('INSET INTO `users` (`username`, `password`, `email`) VALUES(
+                \''.$user->getUsername().'\',
+                \''.$user->getPassword().'\',
+                \''.$user->getEmail().'\')');
     }
 }

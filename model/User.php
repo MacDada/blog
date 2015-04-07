@@ -5,11 +5,11 @@ class User {
     private $password;
     private $email;
     
-    public function __construct($id, $username, $password, $email) {
-        $this->id = $id;
+    public function __construct($username, $password, $email, $id = NULL) {
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
+        $this->id = $id;
     }
     
     public function getID() {

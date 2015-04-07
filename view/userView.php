@@ -54,7 +54,6 @@ class UserView {
         return '<form method="POST">'
         . 'Nazwa użytkownika: <input type="text" name="username"><br>'
         . 'Hasło: <input type="password" name="password"><br>'
-        . 'Powtórz hasło: <input type="password" name="password2"><br>'
         . 'E-mail: <input type="text" name="email"><br>'
         . '<input type="submit" name="submit" value="Dodaj">'
         . '</form>';

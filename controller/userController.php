@@ -28,7 +28,12 @@ class UserController {
     }
 
     public function create() {
-        return $this->view->renderForm();
+        if(isset($_POST['submit'])) {
+            $user = new User($_POST['username'], $_POST['password'], $_POST['email']);
+            $this->userRepository->save($user);
+        } else {
+            return $this->view->renderForm();
+        }
     }
 }
 
