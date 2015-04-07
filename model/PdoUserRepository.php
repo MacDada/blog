@@ -4,11 +4,12 @@ class PdoUserRepository {
 
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     private function createUser(array $userData) {
-        $User = new User($userData['username'], $userData['password'], $userData['email'], $userData['id']);
-        return $User;
+        $user = new User($userData['username'], $userData['password'], $userData['email'], $userData['id']);
+        return $user;
     }
     
     private function createUsers(array $usersData) {
@@ -57,9 +58,14 @@ class PdoUserRepository {
     }
     
     public function save(User $user) {
-        $query = $this->db->exec('INSET INTO `users` (`username`, `password`, `email`) VALUES(
-                \''.$user->getUsername().'\',
-                \''.$user->getPassword().'\',
-                \''.$user->getEmail().'\')');
+        try {
+            $this->db->exec('INSERT INTO `users` (`username`, `password`, `email`) VALUES(
+                    \''.$user->getUsername().'\',
+                    \''.$user->getPassword().'\',
+                    \''.$user->getEmail().'\')');
+        } catch (PDOException $ex) {
+            echo 'Wystapił blad biblioteki PDO: ' . $ex->getMessage();
+        }
+
     }
 }

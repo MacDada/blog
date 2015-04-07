@@ -28,11 +28,11 @@ class UserController {
     }
 
     public function create() {
-        if(isset($_POST['submit'])) {
+        if('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST['username'], $_POST['password'], $_POST['email']);
             $this->userRepository->save($user);
         } else {
-            return $this->view->renderForm();
+            return $this->view->createUserForm();
         }
     }
 }
