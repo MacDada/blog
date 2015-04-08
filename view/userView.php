@@ -1,7 +1,7 @@
 <?php
 class UserView {
 
-    private function renderMenu() {
+    public function renderMenu() {
         return '<a href="index.php?action=lista">Lista userów</a><br>'
         . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'

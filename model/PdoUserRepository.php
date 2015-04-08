@@ -58,14 +58,10 @@ class PdoUserRepository {
     }
     
     public function save(User $user) {
-        try {
-            $this->db->exec('INSERT INTO `users` (`username`, `password`, `email`) VALUES(
-                    \''.$user->getUsername().'\',
-                    \''.$user->getPassword().'\',
-                    \''.$user->getEmail().'\')');
-        } catch (PDOException $ex) {
-            echo 'Wystapił blad biblioteki PDO: ' . $ex->getMessage();
-        }
-
+        $query = $this->db->prepare('INSERT INTO `users` (`username`, `password`, `email`) VALUES(`:username`, `:password`, `:email`)');
+        $query->bindParam(':username', $user->getUsername());
+        $query->bindParam(':password', $user->getPassword());
+        $query->bindParam(':email', $user->getEmail());
+        $query->execute();
     }
 }

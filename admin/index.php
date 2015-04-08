@@ -21,6 +21,7 @@ switch ($_GET['action']) {
         break;
     
     default:
+
         break;
 }
 
