@@ -19,10 +19,6 @@ switch ($_GET['action']) {
     case 'edituser':
         //
         break;
-    
-    default:
-
-        break;
 }
 
 

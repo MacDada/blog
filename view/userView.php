@@ -1,7 +1,7 @@
 <?php
 class UserView {
 
-    public function renderMenu() {
+    private function renderMenu() {
         return '<a href="index.php?action=lista">Lista userów</a><br>'
         . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
@@ -51,7 +51,7 @@ class UserView {
     }
     
     public function createUserForm() {
-        return '<form method="POST" action="index.php?action=adduser">'
+        return '<form method="POST" action="adminindex.php?action=adduser">'
         . 'Nazwa użytkownika: <input type="text" name="username"><br>'
         . 'Hasło: <input type="password" name="password"><br>'
         . 'E-mail: <input type="text" name="email"><br>'
