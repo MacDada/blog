@@ -59,9 +59,12 @@ class PdoUserRepository {
     
     public function save(User $user) {
         $query = $this->db->prepare('INSERT INTO `users` (`username`, `password`, `email`) VALUES(:username, :password, :email)');
-        $query->bindParam(':username', $user->getUsername());
-        $query->bindParam(':password', $user->getPassword());
-        $query->bindParam(':email', $user->getEmail());
+        $query->bindParam(':username', $username);
+        $username = $user->getUsername();
+        $query->bindParam(':password', $password);
+        $password = $user->getPassword();
+        $query->bindParam(':email', $email);
+        $email = $user->getEmail();
         $query->execute();
     }
 }

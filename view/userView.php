@@ -51,7 +51,7 @@ class UserView {
     }
     
     public function createUserForm() {
-        return '<form method="POST" action="adminindex.php?action=adduser">'
+        return '<form method="POST" action="index.php?action=adduser">'
         . 'Nazwa użytkownika: <input type="text" name="username"><br>'
         . 'Hasło: <input type="password" name="password"><br>'
         . 'E-mail: <input type="text" name="email"><br>'

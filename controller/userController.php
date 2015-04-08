@@ -23,7 +23,7 @@ class UserController {
         } catch (UserNotFoundException $ex) {
             $pageContent = $this->view->renderUserNotFound();
         }
-        
+
         return $this->view->renderTemplate($pageContent);
     }
 
@@ -31,6 +31,7 @@ class UserController {
         if('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST['username'], $_POST['password'], $_POST['email']);
             $this->userRepository->save($user);
+            header('Location: index.php?action=user&username='.$_POST['username'].'');
         } else {
             return $this->view->createUserForm();
         }
