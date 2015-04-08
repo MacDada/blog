@@ -2,9 +2,8 @@
 class PdoUserRepository {
     private $db;//PDO
 
-    public function __construct() {
-        $this->db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
-        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function __construct($pdo) {
+        $this->db = $pdo;
     }
 
     private function createUser(array $userData) {
