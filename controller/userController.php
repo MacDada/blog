@@ -31,7 +31,7 @@ class UserController {
         if('POST' === $_SERVER['REQUEST_METHOD']) {
             $user = new User($_POST['username'], $_POST['password'], $_POST['email']);
             $this->userRepository->save($user);
-            header('Location: app.dev/admin/index.php?action=user&username='.$user->getUsername());
+            header('Location: /admin/index.php?action=user&username='.$user->getUsername());
         } else {
             return $this->view->createUserForm();
         }
