@@ -37,7 +37,11 @@ class UserView {
         $menu = $this->renderMenu();
 
         return '
+            <!DOCTYPE html>
             <html>
+            <head>
+                <meta charset="utf-8">
+            </head>
                 <body>
                     <header>
                         '.$menu.'
@@ -57,5 +61,9 @@ class UserView {
         . 'E-mail: <input type="text" name="email"><br>'
         . '<input type="submit" name="submit" value="Dodaj">'
         . '</form>';
+    }
+    
+    private function htmlEscape($string) {
+        return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 }
