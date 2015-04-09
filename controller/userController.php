@@ -41,10 +41,14 @@ class UserController {
         }
     }
     
+    public function pageNotFound() {
+        return $this->view->pageNotFound();
+    }
+    
     public function edit($getUsername) {
         $user = $this->userRepository->findByUsername($getUsername);
         if('POST' === $_SERVER['REQUEST_METHOD']) {
-            $this->userRepository->update($user);
+            $this->userRepository->save($user);
             $urlParameters = html_build_query([
                 'action' => 'user',
                 'username' => $user->getUsername()

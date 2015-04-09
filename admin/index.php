@@ -24,6 +24,10 @@ if(!isset($_GET['action'])) {
         case 'edituser':
             echo $userController->edit($_GET['username']);
             break;
+        
+        default:
+            echo $userController->pageNotFound();
+            break;
     }
 }
 

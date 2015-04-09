@@ -73,4 +73,8 @@ class UserView {
         . '<input type="submit" name="submit" value="Zapisz">'
         . '</form>';
     }
+    
+    public function pageNotFound() {
+        return 'Nie znaleziono strony.';
+    }
 }
