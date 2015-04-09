@@ -60,15 +60,15 @@ class PdoUserRepository {
         if($user->getID() == NULL) {
             $query = $this->db->prepare('INSERT INTO `users` (`username`, `password`, `email`) VALUES(:username, :password, :email)');
         } else {
-            $query = $this->db->prepare('UPDATE `users` SET username = :username, password = :password, email = :email WHERE username = '.$user->getUsername().'');
+            $query = $this->db->prepare('UPDATE `users` SET password = :password, email = :email WHERE username = '.$user->getUsername().'');
         }
         var_dump($query);
-        $query->bindParam(':username', $username);
-        $username = $user->getUsername();
         $query->bindParam(':password', $password);
         $password = $user->getPassword();
+        echo 'Pass: '.$password;
         $query->bindParam(':email', $email);
         $email = $user->getEmail();
+        echo 'E: '.$email;
         $query->execute();
     }
 }
