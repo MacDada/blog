@@ -35,7 +35,7 @@ class UserController {
                 'action' => 'user',
                 'username' => $user->getUsername()
             ]);
-            header('Location: /admin/index.php?'.$urlParameters);
+            //header('Location: /admin/index.php?'.$urlParameters);
         } else {
             return $this->view->createUserForm();
         }
@@ -46,8 +46,9 @@ class UserController {
     }
     
     public function edit($getUsername) {
+        $userfromdb = $this->userRepository->findByUsername($getUsername);
         if('POST' === $_SERVER['REQUEST_METHOD']) {
-            $user = new User($_POST['username'], $_POST['password'], $_POST['email']);
+            $user = new User($userfromdb->getUsername(), $_POST['password'], $_POST['email'], $userfromdb->getID());
             $this->userRepository->save($user);
             $urlParameters = http_build_query([
                 'action' => 'user',
@@ -55,8 +56,7 @@ class UserController {
             ]);
             //header('Location: /admin/index.php?'.$urlParameters);
         } else {
-            $user = $this->userRepository->findByUsername($getUsername);
-            return $this->view->editUserForm($user);
+            return $this->view->editUserForm($userfromdb);
         }
     }
 }

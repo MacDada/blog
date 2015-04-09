@@ -67,6 +67,7 @@ class UserView {
     
     public function editUserForm(User $user) {
         return '<form method="POST" action="/admin/index.php?action=edituser&username='.$user->getUsername().'">'
+        . 'Login: <input type="text" name="username" value="'.$user->getUsername().'" disabled><br>'
         . 'Hasło: <input type="password" name="password" value="'.$user->getPassword().'"><br>'
         . 'E-mail: <input type="text" name="email" value="'.$user->getEmail().'"><br>'
         . '<input type="submit" name="submit" value="Zapisz">'
