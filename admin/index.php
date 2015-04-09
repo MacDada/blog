@@ -6,7 +6,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 $userController = new UserController(new UserView(), new PdoUserRepository($pdo));
 
 if(!isset($_GET['action'])) {
-    //
+    echo $userController->usersList();
 } else {
     switch ($_GET['action']) {
         case 'list':

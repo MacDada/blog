@@ -3,9 +3,7 @@ class UserView {
 
     private function renderMenu() {
         return '<a href="index.php?action=list">Lista userów</a><br>'
-        . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
-        . '<a href="index.php?action=edituser">Edytuj uzytkownika</a><hr>'
               ;
     }
     
