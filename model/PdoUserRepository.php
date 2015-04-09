@@ -66,4 +66,16 @@ class PdoUserRepository {
         $email = $user->getEmail();
         $query->execute();
     }
+    
+    public function update(User $user) {
+        $query = $this->db->prepare('UPDATE `users` SET `username` = :username, `password` = :password, `email` = :email WHERE `username` = '.$user->getUsername().'');
+        var_dump($query);
+        $query->bindParam(':username', $username);
+        $username = $user->getUsername();
+        $query->bindParam(':password', $password);
+        $password = $user->getPassword();
+        $query->bindParam(':email', $email);
+        $email = $user->getEmail();
+        $query->execute();
+    }
 }

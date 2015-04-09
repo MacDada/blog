@@ -40,5 +40,19 @@ class UserController {
             return $this->view->createUserForm();
         }
     }
+    
+    public function edit($getUsername) {
+        $user = $this->userRepository->findByUsername($getUsername);
+        if('POST' === $_SERVER['REQUEST_METHOD']) {
+            $this->userRepository->update($user);
+            $urlParameters = html_build_query([
+                'action' => 'user',
+                'username' => $user->getUsername()
+            ]);
+            header('Location: /admin/index.php?'.$urlParameters);
+        } else {
+            return $this->view->editUserForm($user);
+        }
+    }
 }
 

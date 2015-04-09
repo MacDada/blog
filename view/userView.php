@@ -2,7 +2,7 @@
 class UserView {
 
     private function renderMenu() {
-        return '<a href="index.php?action=lista">Lista userów</a><br>'
+        return '<a href="index.php?action=list">Lista userów</a><br>'
         . '<a href="index.php?action=user">Jeden uzytkownik</a><br>'
         . '<a href="index.php?action=adduser">Dodaj uzytkownika</a><br>'
         . '<a href="index.php?action=edituser">Edytuj uzytkownika</a><hr>'
@@ -15,7 +15,7 @@ class UserView {
                 return 'Nie znaleziono użytkowników.';
         }
         foreach ($users as $user) {
-            $usersList .= 'id='.$user->getID().' username='.$user->getUsername().'<br />';
+            $usersList .= '[<a href="/admin/index.php?action=edituser&username='.$user->getUsername().'">E</a>] <a href="/admin/index.php?action=user&username='.$user->getUsername().'">'.$user->getUsername().'</a><br />';
         }
         return 'Użytkownicy: <br>'.$usersList;
     }
@@ -65,5 +65,14 @@ class UserView {
     
     private function htmlEscape($string) {
         return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    }
+    
+    public function editUserForm(User $user) {
+        return '<form method="POST" action="/admin/index.php?action=edituser&username='.$user->getUsername().'">'
+        . 'Nazwa użytkownika: <input type="text" name="username" value="'.$user->getUsername().'"><br>'
+        . 'Hasło: <input type="password" name="password" value="'.$user->getPassword().'"><br>'
+        . 'E-mail: <input type="text" name="email" value="'.$user->getEmail().'"><br>'
+        . '<input type="submit" name="submit" value="Zapisz">'
+        . '</form>';
     }
 }

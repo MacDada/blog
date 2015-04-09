@@ -5,22 +5,26 @@ $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 
 $userController = new UserController(new UserView(), new PdoUserRepository($pdo));
 
-switch ($_GET['action']) {
-    case 'lista':
-        echo $userController->usersList();
-        break;
-    
-    case 'user':
-        echo $userController->singleUser($_GET['username']);
-        break;
-    
-    case 'adduser':
-        echo $userController->create();
-        break;
-    
-    case 'edituser':
-        //
-        break;
+if(!isset($_GET['action'])) {
+    //
+} else {
+    switch ($_GET['action']) {
+        case 'list':
+            echo $userController->usersList();
+            break;
+
+        case 'user':
+            echo $userController->singleUser($_GET['username']);
+            break;
+
+        case 'adduser':
+            echo $userController->create();
+            break;
+
+        case 'edituser':
+            echo $userController->edit($_GET['username']);
+            break;
+    }
 }
 
 
