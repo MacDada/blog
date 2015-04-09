@@ -1,9 +1,12 @@
 <?php
 class PdoUserRepository {
-    private $db;//PDO
+    /**
+     * @var PDO
+     */
+    private $pdo;//PDO
 
     public function __construct($pdo) {
-        $this->db = $pdo;
+        $this->pdo = $pdo;
     }
 
     private function createUser(array $userData) {
@@ -20,14 +23,14 @@ class PdoUserRepository {
     }
 
     public function findAll() {
-        $query = $this->db->query('SELECT * FROM users');
+        $query = $this->pdo->query('SELECT * FROM users');
         $array = $this->result = $query->fetchAll(PDO::FETCH_ASSOC);
         $users = $this->createUsers($array);
         return $users;
     }
     
     public function findByID($id) {
-        $query = $this->db->query('SELECT * FROM users WHERE id="'.$id.'"');
+        $query = $this->pdo->query('SELECT * FROM users WHERE id="'.$id.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
@@ -37,7 +40,7 @@ class PdoUserRepository {
     }
 
     public function findByUsername($username) {
-        $query = $this->db->query('SELECT * FROM users WHERE username="'.$username.'"');
+        $query = $this->pdo->query('SELECT * FROM users WHERE username="'.$username.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
@@ -47,7 +50,7 @@ class PdoUserRepository {
     }
     
     public function findByEmail($email) {
-        $query = $this->db->query('SELECT * FROM users WHERE email="'.$email.'"');
+        $query = $this->pdo->query('SELECT * FROM users WHERE email="'.$email.'"');
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if(NULL == $result) {
             throw new UserNotFoundException();
@@ -58,17 +61,29 @@ class PdoUserRepository {
     
     public function save(User $user) {
         if($user->getID() === NULL) {
-            $query = $this->db->prepare('INSERT INTO `users` (`username`, `password`, `email`) VALUES(:username, :password, :email)');
-            $query->bindParam(':username', $username);
+            $query = $this->pdo->prepare('INSERT INTO `users` (`username`, `password`, `email`) VALUES(:username, :password, :email)');
             $username = $user->getUsername();
+            $query->bindParam(':username', $username);
         } else {
-            $query = $this->db->prepare('UPDATE `users` SET `password` = :password, `email` = :email WHERE `username` = '.$user->getUsername().'');
+            $query = $this->pdo->prepare("
+                UPDATE `users`
+                SET
+                    `password` = :password,
+                    `email` = :email
+                WHERE `username` = :username
+            ");
         }
-        var_dump($query);
+        $username = $user->getUsername();
+        $query->bindParam(':username', $username);
+        
+        $password = $user->getPassword();
         $query->bindParam(':password', $password);
-        echo $password = $user->getPassword();
+        
+        $email = $user->getEmail();
         $query->bindParam(':email', $email);
-        echo $email = $user->getEmail();
-        $query->execute();
+        
+        if(!$query->execute()) {
+            throw new Exception('Błąd execute.');
+        }
     }
 }

@@ -35,7 +35,7 @@ class UserController {
                 'action' => 'user',
                 'username' => $user->getUsername()
             ]);
-            //header('Location: /admin/index.php?'.$urlParameters);
+            header('Location: /admin/index.php?'.$urlParameters);
         } else {
             return $this->view->createUserForm();
         }
@@ -54,7 +54,7 @@ class UserController {
                 'action' => 'user',
                 'username' => $user->getUsername()
             ]);
-            //header('Location: /admin/index.php?'.$urlParameters);
+            header('Location: /admin/index.php?'.$urlParameters);
         } else {
             return $this->view->editUserForm($userfromdb);
         }
